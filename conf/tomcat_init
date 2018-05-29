@@ -1,0 +1,28 @@
+#!/bin/bash  
+# description: Tomcat7 Start Stop Restart  
+# processname: tomcat7  
+# chkconfig: 234 20 80  
+
+JAVA_HOME=/usr/local/setup/jdk_home
+
+export JAVA_HOME  
+PATH=$JAVA_HOME/bin:$PATH  
+export PATH  
+
+CATALINA_HOME=/usr/local/setup/tomcat_home/bin
+case $1 in  
+	start)  
+		sh $CATALINA_HOME/startup.sh  
+		;;   
+	stop)     
+		sh $CATALINA_HOME/shutdown.sh
+		;;   
+	restart)  
+		sh $CATALINA_HOME/shutdown.sh  
+		sh $CATALINA_HOME/startup.sh  
+		;;  
+	*)
+        echo "Please use start|stop|restart as first argument"
+        ;;		
+esac      
+exit 0
